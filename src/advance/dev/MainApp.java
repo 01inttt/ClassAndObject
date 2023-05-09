@@ -4,51 +4,60 @@ import java.util.Scanner;
 
 public class MainApp {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Student[] students = new Student[10];
-		input(students);
-		print(students);
-	}
-
-	private static void print(Student[] students) {
-		// TODO Auto-generated method stub
-		System.out.println("List of 10 students:");
-        for (int i = 0; i < students.length; i++) {
-            System.out.println("Student #" + (i + 1) + ": " + students[i].getName() + " - " + students[i].getAge()
-                    + " years old - " + students[i].getAddress() + " - " + students[i].getPhoneNumber() + " - "
-                    + students[i].getAverageScore() + " average score");
-        }
-    
-	}
-
-	private static void input(Student[] students) {
-		// TODO Auto-generated method stub
+	 public static void main(String[] args) {
+	        Student[] students = new Student[10];
+	        input(students);
+	        print(students);
+	        sortByAverageScore(students);
+	        System.out.println("Danh sách sinh viên sắp xếp theo điểm trung bình:");
+	        print(students);
+	    }
+		public static void input(Student[] students) {
 		Scanner scanner = new Scanner(System.in);
 		for (int i = 0; i < students.length; i++) {
-			System.out.println("Nhập vào thông tin của học sinh #" + (i + 1) + ":" );
-			System.out.print("Name: ");
+            System.out.println("Nhập thông tin học sinh #" + (i + 1) + ":");
+            System.out.print("Tên: ");
             String name = scanner.nextLine();
-
-            System.out.print("Age: ");
-            int age = scanner.nextInt();
-            scanner.nextLine();
-
-            System.out.print("Address: ");
+            System.out.print("Tuổi: ");
+            int age = Integer.parseInt(scanner.nextLine());
+            System.out.print("Địa Chỉ: ");
             String address = scanner.nextLine();
-
-            System.out.print("Phone number: ");
+            System.out.print("Số điện thoại: ");
             String phoneNumber = scanner.nextLine();
+            System.out.print("Điểm trung bình: ");
+            double averageScore = Double.parseDouble(scanner.nextLine());
 
-            System.out.print("Average score: ");
-            double averageScore = scanner.nextDouble();
-            scanner.nextLine();
-
-            students[i] = new Student(name, age, address, phoneNumber, averageScore);
+            Student student = new Student(name, age, address, phoneNumber, averageScore);
+            students[i] = student;
         }
-
         scanner.close();
-		}
-	
+    }
+
+    public static void print(Student[] students) {
+        System.out.println("List of students:");
+        for (Student student : students) {
+            System.out.println("Name: " + student.getName());
+            System.out.println("Age: " + student.getAge());
+            System.out.println("Address: " + student.getAddress());
+            System.out.println("Phone number: " + student.getPhoneNumber());
+            System.out.println("Average score: " + student.getAverageScore());
+            System.out.println("--------------------");
+        }
+    }
+
+    public static void sortByAverageScore(Student[] students) {
+        for (int i = 0; i < students.length - 1; i++) {
+            for (int j = i + 1; j < students.length; j++) {
+                if (students[i].getAverageScore() > students[j].getAverageScore()) {
+                    Student temp = students[i];
+                    students[i] = students[j];
+                    students[j] = temp;
+                }
+            }
+        }
+    }
+
+   
 	}
+
 

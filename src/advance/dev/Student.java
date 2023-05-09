@@ -7,11 +7,11 @@ public class Student {
 	private String phoneNumber;
 	private double averageScore;
 	public Student(String name, int age, String address, String phoneNumber, double averageScore) {
-	this.name = name;
-	this.age = age;
-	this.address = address;
-	this.phoneNumber = phoneNumber;
-	this.averageScore = averageScore;
+		this.name = name;
+        this.age = age;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.averageScore = averageScore;
 	}
 	public String getName() {
 		return name;
@@ -23,7 +23,11 @@ public class Student {
 		return age;
 	}
 	public void setAge(int age) {
-		this.age = age;
+		if (age > 0) {
+            this.age = age;
+        } else {
+            System.out.println("Invalid age");
+        }
 	}
 	public String getAddress() {
 		return address;
@@ -41,6 +45,11 @@ public class Student {
 		return averageScore;
 	}
 	public void setAverageScore(double averageScore) {
-		this.averageScore = averageScore;
+		if (averageScore >= 0) {
+            this.averageScore = averageScore;
+        } else {
+            System.out.println("Invalid average score");
+        }
 	}
+	
 }
